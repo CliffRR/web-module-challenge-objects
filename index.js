@@ -16,9 +16,15 @@ The function should:
 */
 
 
-function createMenuItem(/*Your code here*/){
-  /*Your code here*/
+function createMenuItem(FoodName, Price, Category){
+  const Menu = {};
+  Menu.name = FoodName;
+  Menu.price = Price;
+  Menu.category = Category;
+
+  return Menu
 }
+
 
 
 
@@ -31,7 +37,9 @@ Test your createMenuItems function by doing the following:
   
   For example: createMenuItem("pizza",5,"lunch") would return this as the object: {name:"Pizza",price:5,category:"lunch"}
 */
-
+console.log(createMenuItem('pizza',5,'lunch'));
+console.log(createMenuItem('eggs',2,'breakfast'));
+console.log(createMenuItem('bacon',3,'breakfast'))
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -51,8 +59,20 @@ const burger = {
   name: "Burger", 
   price: 18, 
   category: "Lunch", 
+  discount: function(Person_Title){
+    if(Person_Title === 'teacher' || Person_Title === 'student'){
+      Discount = burger.price * .25;
+      ActualPrice = burger.price - Discount;
+    }
+    else if(Person_Title === 'public'){
+      Discount = burger.price * .1;
+      ActualPrice = burger.price - Discount;
+    }
+    return ActualPrice
+  }
   
 }
+console.log(burger.discount('teacher'))
 
 
 
@@ -72,6 +92,7 @@ const reviews = [
 Using the reviews array above:
   1. log only Julius' feedback to the console - no function needed 
 */
+console.log(reviews[5].feedback)
 
 
 
@@ -80,7 +101,8 @@ Reyna's feedback is missing! Use what you know to do the following: (no function
   1. Add this feedback to Reyna's rating - "this place is chill with really cool people, great for getting work done on weekdays"
   2. log the reviews array to the console to check your work
 */
-
+reviews[7].feedback = "this place is chill with really cool people, great for getting work done on weekdays"
+console.log(reviews[7].feedback)
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -93,10 +115,12 @@ Use the addReview function below to do the following:
   🌟 EXAMPLE: addReview(reviews, 'Daniela', 5, 'Beautiful atmosphere and wonderful vegan options!') should add the following to the end of the array: {name: 'Daniela', rating: 5, feedback: 'Beautiful atmosphere and wonderful vegan options!'}
   4. Return the resulting array
 */
+let sentence = 'Beautiful atmosphere and wonderful vegan options!'
 
-
-function addReview(/*Your Code Here */){
-  /*Your Code Here */
+function addReview(Array, ActualName, Rating, Feedback){
+  const Dict = {name: ActualName, rating: Rating, feedback: Feedback};
+  Array.push(Dict);
+  return Array;
 }
 
 
@@ -112,8 +136,10 @@ Use the getReviewByIndex function below to do the following:
 */
 
 
-function getReviewByIndex(/*Your code here*/) {
-  /*Your code here*/
+function getReviewByIndex(Array, Index) {
+let Review = Array[Index].name + ' gave the restaurant a ' + Array[Index].rating + ' star review, and their feedback was: ' + Array[Index].feedback
+return Review
+
 }
 
   
@@ -131,10 +157,9 @@ Use the getLastReview function below to do the following:
 */
 
 
-function getLastReview(/*Your code here*/) {
-  /*Your code here*/
+function getLastReview(Array) {
+  return Array.slice(-1)[0].name + ' gave the restaurant a ' + Array.slice(-1)[0].rating + ' star review, and their feedback was: ' + Array.slice(-1)[0].feedback
 } 
-
 
 
 ///////////////🍔☕️🍽 STRETCH🍔☕️🍽////////////////////
@@ -153,8 +178,14 @@ Use the getReviewsByRating function below to do the following:
   ]
 */
 
- function getReviewByRating(/* code here */) {
-    /* code here */
+ function getReviewByRating(Array, Ratings) {
+   const NewArray = [];
+    for(i = 0; i < Array.length; i++){
+        if(Array[i].rating >= Ratings && Array[i].rating <= Ratings + .9){
+          NewArray[i]= ('name: ' + Array[i].name + ', ' + 'rating: '+ Array[i].rating + ', feedback: ' + Array[i].feedback)
+        }
+    }
+    return NewArray
   }
 
   
@@ -171,8 +202,21 @@ Use the getLongReviews function below to do the following:
   ]
 */
 
-function getLongReviews(/* code here */) {
-    /* code here */
+function getLongReviews(Array) {
+    const NewArray = [];
+    const WordCount = [];
+    const SufficientWordCount = [];
+
+    for(i=0; i<Array.length; i++){
+      NewArray[i] = Array[i].feedback.split(" ");
+      WordCount[i] = NewArray[i].length;
+      
+      if(WordCount[i] > 15){
+        SufficientWordCount[i] = Array[i];
+        return(SufficientWordCount)
+      }
+    }
+
   }
   
 
@@ -194,10 +238,20 @@ Use the carMaker function below to do the following:
 */
 
 
-function carMaker(/* code here */) {
-    /* code here */
+
+   const CarOdometer = {
+      Car1 : 1,
+      Car2 : 2,
+      Car3 : 3,
+      Odometer : function(AdditionalMiles, WhichCar){
+        TotalMiles = AdditionalMiles + WhichCar
+        return(TotalMiles);
+      }
+    }
+
+  
     
-}
+
 
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
